@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.elianmelo.clinicaveterinaria.domain.Animal;
 import com.elianmelo.clinicaveterinaria.repository.AnimalRepository;
+import com.elianmelo.clinicaveterinaria.service.exception.AnimalNaoEncontradoException;
 
 @Service
 public class AnimalService {
@@ -18,12 +19,12 @@ public class AnimalService {
 		return repository.findAll();
 	}
 	
-	public Animal novo(Animal animal) {
+	public Animal newAnimal(Animal animal) {
 		return repository.save(animal);
 	}
 	
     public Animal animal(Integer id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new Exception("Animal não encontrada"));
+        return repository.findById(id).orElseThrow(() -> new AnimalNaoEncontradoException(id));
     }
 
     public Animal atualiza(Animal animal, Integer id) {

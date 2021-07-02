@@ -15,44 +15,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.elianmelo.clinicaveterinaria.domain.Consulta;
-import com.elianmelo.clinicaveterinaria.service.ConsultaService;
+import com.elianmelo.clinicaveterinaria.domain.Doenca;
+import com.elianmelo.clinicaveterinaria.service.DoencaService;
 
 @RestController
-@RequestMapping("/consulta")
-class ConsultaController {
+@RequestMapping("/doenca")
+class DoencaController {
 
 	@Autowired
-	private ConsultaService service;
+	private DoencaService service;
 	
 	@GetMapping
-	public List<Consulta> all() {
+	public List<Doenca> all() {
 		return service.todos();
 	}
 	
 	@PostMapping
-	public ResponseEntity<String> newConsulta(@Valid @RequestBody Consulta consulta) {
-		service.newConsulta(consulta);
-		return ResponseEntity.ok("Consulta cadastrada com sucesso."); 
+	public ResponseEntity<String> newDoenca(@Valid @RequestBody Doenca doenca) {
+		service.newDoenca(doenca);
+		return ResponseEntity.ok("Doença cadastrada com sucesso."); 
 	}
 	
 	@GetMapping("/{id}")
-	public Consulta one(@PathVariable Integer id) throws Exception {
-		return service.consulta(id);
-	}
-	
-	@GetMapping("/id={id}")
-	public List<Consulta> animal(@PathVariable Integer id) throws Exception {
-		return service.animalConsulta(id);
+	public Doenca one(@PathVariable Integer id) throws Exception {
+		return service.doenca(id);
 	}
 	
 	@PutMapping("/{id}")
-	public Consulta replaceConsulta(@RequestBody Consulta consulta, @PathVariable Integer id) {
-		return service.atualiza(consulta, id);
+	public Doenca replaceDoenca(@RequestBody Doenca doenca, @PathVariable Integer id) {
+		return service.atualiza(doenca, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	void deleteConsulta(@PathVariable Integer id) {
-		service.deleteConsulta(id);
+	void deleteDoenca(@PathVariable Integer id) {
+		service.deleteDoenca(id);
 	}
 }

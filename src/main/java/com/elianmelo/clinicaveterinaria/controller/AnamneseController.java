@@ -2,7 +2,10 @@ package com.elianmelo.clinicaveterinaria.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,8 +31,9 @@ class AnamneseController {
 	}
 	
 	@PostMapping
-	public Anamnese novo(@RequestBody Anamnese anamnese) {
-		return service.novo(anamnese);
+	public ResponseEntity<String> newAnamnese(@Valid @RequestBody Anamnese anamnese) {
+		service.newAnamnese(anamnese);
+		return ResponseEntity.ok("Anamnese cadastrada com sucesso."); 
 	}
 	
 	@GetMapping("/{id}")

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.elianmelo.clinicaveterinaria.domain.Exame;
 import com.elianmelo.clinicaveterinaria.repository.ExameRepository;
+import com.elianmelo.clinicaveterinaria.service.exception.ExameNaoEncontradoException;
 
 @Service
 public class ExameService {
@@ -18,12 +19,20 @@ public class ExameService {
 		return repository.findAll();
 	}
 	
-	public Exame novo(Exame exame) {
+	public Exame newExame(Exame exame) {
 		return repository.save(exame);
 	}
 	
     public Exame exame(Integer id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new Exception("Exame não encontrada"));
+        return repository.findById(id).orElseThrow(() -> new ExameNaoEncontradoException(id));
+    }
+    
+    public List<Exame> animalExame(Integer id) throws Exception {
+    	List<Exame> exames = repository.findByAnimalExameId(id);
+    	if(exames.size() == 0) {
+    		throw new ExameNaoEncontradoException();
+    	}
+    	return exames;
     }
 
     public Exame atualiza(Exame exame, Integer id) {

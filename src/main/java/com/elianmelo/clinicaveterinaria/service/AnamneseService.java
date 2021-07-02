@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.elianmelo.clinicaveterinaria.domain.Anamnese;
 import com.elianmelo.clinicaveterinaria.repository.AnamneseRepository;
+import com.elianmelo.clinicaveterinaria.service.exception.AnamneseNaoEncontradoException;
 
 @Service
 public class AnamneseService {
@@ -18,12 +19,12 @@ public class AnamneseService {
 		return repository.findAll();
 	}
 	
-	public Anamnese novo(Anamnese anamnese) {
+	public Anamnese newAnamnese(Anamnese anamnese) {
 		return repository.save(anamnese);
 	}
 	
     public Anamnese anamnese(Integer id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new Exception("Anamnese não encontrada"));
+        return repository.findById(id).orElseThrow(() -> new AnamneseNaoEncontradoException(id));
     }
 
     public Anamnese atualiza(Anamnese anamnese, Integer id) {
