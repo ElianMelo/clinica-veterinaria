@@ -1,5 +1,6 @@
 package com.elianmelo.clinicaveterinaria.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,12 @@ public class DoencaService {
 	}
 	
     public Doenca doenca(Integer id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new DoencaNaoEncontradoException(id));
+    	Optional<Doenca> doenca = repository.findById(id);
+    	if(doenca.isPresent()) {
+    		return doenca.get();
+    	} else {
+    		throw new DoencaNaoEncontradoException(id);
+    	}
     }
 
     public Doenca atualiza(Doenca doenca, Integer id) {

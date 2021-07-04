@@ -30,7 +30,12 @@ public class AnamneseService {
 	}
 	
     public Anamnese anamnese(Integer id) throws Exception {
-        return repository.findById(id).orElseThrow(() -> new AnamneseNaoEncontradoException(id));
+    	Optional<Anamnese> anamnese = repository.findById(id);
+    	if(anamnese.isPresent()) {
+    		return anamnese.get();
+    	} else {
+    		throw new AnamneseNaoEncontradoException(id);
+    	}  
     }
     
     public List<Anamnese> anamneseConsulta(Integer id) throws Exception {
