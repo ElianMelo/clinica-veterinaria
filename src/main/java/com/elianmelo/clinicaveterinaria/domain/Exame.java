@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,6 @@ public class Exame implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@NotNull
 	private Integer id;
 	
 	@NotNull(message = "O atributo hemograma deve ser preenchido.")
@@ -60,8 +59,7 @@ public class Exame implements Serializable {
 	private String date;
 	
 	@ManyToOne
-	@JsonManagedReference(value="animalExame")
-	@NotNull(message = "O atributo animalExame deve ser preenchido.")
+	@JsonBackReference(value="animalExame")
 	private Animal animalExame;
 	
 	public Exame(Boolean hemograma, Boolean colesterol, Boolean fosforo, Boolean calcio, Boolean glicose,

@@ -41,6 +41,11 @@ class AnamneseController {
 		return service.anamnese(id);
 	}
 	
+	@GetMapping("/id={id}")
+	public List<Anamnese> consulta(@PathVariable Integer id) throws Exception {
+		return service.anamneseConsulta(id);
+	}
+	
 	@PutMapping("/{id}")
 	public Anamnese replaceAnamnese(@RequestBody Anamnese anamnese, @PathVariable Integer id) {
 		return service.atualiza(anamnese, id);

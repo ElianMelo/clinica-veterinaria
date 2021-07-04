@@ -6,4 +6,8 @@ public class AnamneseNaoEncontradoException extends RuntimeException {
 	public AnamneseNaoEncontradoException(Integer id) {
 		super("Anamnese não encontrado. ID " + id);
 	}
+	
+	public AnamneseNaoEncontradoException() {
+		super("Anamnese não encontrada.");
+	}
 }

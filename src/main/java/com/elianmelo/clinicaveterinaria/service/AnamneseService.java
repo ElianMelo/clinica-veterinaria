@@ -1,5 +1,6 @@
 package com.elianmelo.clinicaveterinaria.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,24 @@ public class AnamneseService {
 	}
 	
 	public Anamnese newAnamnese(Anamnese anamnese) {
-		return repository.save(anamnese);
+		Optional<Anamnese> anamneseBanco = repository.findById(anamnese.getConsulta().getId());
+		if(anamneseBanco.isEmpty()) {
+			return repository.save(anamnese);
+		} else {
+			return atualiza(anamnese, anamneseBanco.get().getId());
+		}
 	}
 	
     public Anamnese anamnese(Integer id) throws Exception {
         return repository.findById(id).orElseThrow(() -> new AnamneseNaoEncontradoException(id));
+    }
+    
+    public List<Anamnese> anamneseConsulta(Integer id) throws Exception {
+    	List<Anamnese> anameneses = repository.findByConsultaId(id);
+    	if(anameneses.size() == 0) {
+    		throw new AnamneseNaoEncontradoException();
+    	}
+    	return anameneses;
     }
 
     public Anamnese atualiza(Anamnese anamnese, Integer id) {
