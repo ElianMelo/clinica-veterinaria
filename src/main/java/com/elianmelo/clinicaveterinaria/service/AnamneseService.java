@@ -22,7 +22,7 @@ public class AnamneseService {
 	
 	public Anamnese newAnamnese(Anamnese anamnese) {
 		Optional<Anamnese> anamneseBanco = repository.findById(anamnese.getConsulta().getId());
-		if(anamneseBanco.isEmpty()) {
+		if(anamneseBanco.isPresent()) {
 			return repository.save(anamnese);
 		} else {
 			return atualiza(anamnese, anamneseBanco.get().getId());
