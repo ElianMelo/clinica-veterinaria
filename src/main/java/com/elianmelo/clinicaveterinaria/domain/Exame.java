@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -59,7 +59,7 @@ public class Exame implements Serializable {
 	private String date;
 	
 	@ManyToOne
-	@JsonBackReference(value="animalExame")
+	@JsonManagedReference(value="animalExame")
 	private Animal animalExame;
 	
 	public Exame(Boolean hemograma, Boolean colesterol, Boolean fosforo, Boolean calcio, Boolean glicose,
