@@ -71,6 +71,9 @@ class Fluxo extends Component {
     
     change(key, value) {
         this.setState({ [key]: value });
+        if(key == "anamnese") {
+          this.setState({ doenca: value[0].doencas });
+        }
     }
     render() {
         return (
@@ -93,11 +96,6 @@ class Fluxo extends Component {
                 <SpecificDataset
                   endpoint="anamnese"
                   opt="/7"
-                  change={this.change}
-                />
-                <SpecificDataset
-                  endpoint="doenca"
-                  opt="4"
                   change={this.change}
                 />
 
