@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Datagrid from './components/Datagrid';
 import Dataset from './components/Dataset';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { Nav, Navbar } from 'react-bootstrap';
+
 
 class App extends Component {
   constructor(props) {
@@ -45,7 +53,7 @@ class App extends Component {
       id: "Id",
       calcio: "Calcio",
       colesterol: "Colesterol",
-      date: "Data",
+      date: "Data Atendimento",
       fosforo: "Fósforo",
       glicose: "Glicose",
       hemograma: "Hemograma",
@@ -71,57 +79,85 @@ class App extends Component {
   }
 
   change(key, value) {
-    this.setState({[key]: value});
+    this.setState({ [key]: value });
   }
 
   render() {
     return (
-      <div className="container">
-        <Dataset
-          endpoint="animal"
-          change={this.change}
-        />
-        <Dataset
-          endpoint="consulta"
-          change={this.change}
-        />,
-        <Dataset
-          endpoint="exame"
-          change={this.change}
-        />
-        <Dataset
-          endpoint="anamnese"
-          change={this.change}
-        />
-        <Dataset
-          endpoint="doenca"
-          change={this.change}
-        />
-        <Datagrid
-          titulo="Animal"
-          dados={this.state.animal}
-          metadados={this.animalMetadata}
-        />
-        <Datagrid
-          titulo="Consulta"
-          dados={this.state.consulta}
-          metadados={this.consultaMetadata}
-        />
-        <Datagrid
-          titulo="Exame"
-          dados={this.state.exame}
-          metadados={this.exameMetadata}
-        />
-        <Datagrid
-          titulo="Anamnese"
-          dados={this.state.anamnese}
-          metadados={this.anamneseMetadata}
-        />
-        <Datagrid
-          titulo="Doenca"
-          dados={this.state.doenca}
-          metadados={this.doencaMetadata}
-        />
+      <div>
+        <Router>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand>Clinica Veterinária</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link>
+                <Link to="/">Inicio</Link>
+              </Nav.Link>
+              <Nav.Link>
+                <Link to="/fluxo">Fluxo</Link>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
+
+          <div className="container">
+            <Switch>
+              <Route exact path="/">
+                <Dataset
+                  endpoint="animal"
+                  change={this.change}
+                />
+                <Dataset
+                  endpoint="consulta"
+                  change={this.change}
+                />,
+                <Dataset
+                  endpoint="exame"
+                  change={this.change}
+                />
+                <Dataset
+                  endpoint="anamnese"
+                  change={this.change}
+                />
+                <Dataset
+                  endpoint="doenca"
+                  change={this.change}
+                />
+
+
+                <Datagrid
+                  titulo="Animal"
+                  dados={this.state.animal}
+                  metadados={this.animalMetadata}
+                />
+                <Datagrid
+                  titulo="Consulta"
+                  dados={this.state.consulta}
+                  metadados={this.consultaMetadata}
+                />
+                <Datagrid
+                  titulo="Exame"
+                  dados={this.state.exame}
+                  metadados={this.exameMetadata}
+                />
+                <Datagrid
+                  titulo="Anamnese"
+                  dados={this.state.anamnese}
+                  metadados={this.anamneseMetadata}
+                />
+                <Datagrid
+                  titulo="Doenca"
+                  dados={this.state.doenca}
+                  metadados={this.doencaMetadata}
+                />
+              </Route>
+              <Route path="/fluxo">
+                <h1>Guaxinim</h1>
+              </Route>
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }

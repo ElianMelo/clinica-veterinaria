@@ -44,7 +44,6 @@ class Datagrid extends Component {
                     <tbody>
                             {
                                 this.props.dados.map((el) => {
-                                    console.log(el);
                                     return <tr>
                                     {
                                         this.state.metadados.props.map((prop) => {
