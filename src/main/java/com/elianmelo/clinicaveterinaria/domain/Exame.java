@@ -59,7 +59,7 @@ public class Exame implements Serializable {
 	private String date;
 	
 	@ManyToOne
-	@JsonManagedReference(value="animalExame")
+	@JsonManagedReference(value="animalexame-ref")
 	private Animal animalExame;
 	
 	public Exame(Boolean hemograma, Boolean colesterol, Boolean fosforo, Boolean calcio, Boolean glicose,

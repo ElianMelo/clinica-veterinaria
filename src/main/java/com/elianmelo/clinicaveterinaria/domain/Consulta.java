@@ -40,7 +40,7 @@ public class Consulta implements Serializable {
 	private String historico;
 	
 	@ManyToOne
-	@JsonManagedReference(value="animalConsulta")
+	@JsonManagedReference(value="animalconsulta-ref")
 	private Animal animalConsulta;
 	
     @OneToOne(mappedBy = "consulta")

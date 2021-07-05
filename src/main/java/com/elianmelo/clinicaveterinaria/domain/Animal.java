@@ -60,11 +60,11 @@ public class Animal implements Serializable {
 	private int estado;
 	
 	@OneToMany(mappedBy = "animalExame")
-	@JsonBackReference(value="animalExame")
+	@JsonBackReference(value="animalexame-ref")
 	private List<Exame> exames = new ArrayList<Exame>();
 	
 	@OneToMany(mappedBy = "animalConsulta")
-	@JsonBackReference(value="animalConsulta")
+	@JsonBackReference(value="animalconsulta-ref")
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 	
 	public Animal(String nome, String foto, String raca, String pelagem, double peso, int tipo, String dataNascimento,
