@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/clinica-veterinaria-0.0.1-SNAPSHOT
+web: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/clinica-veterinaria-0.0.1-SNAPSHOT.jar
