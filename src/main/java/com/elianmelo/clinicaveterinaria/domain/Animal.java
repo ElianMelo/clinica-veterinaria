@@ -14,7 +14,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -60,11 +60,11 @@ public class Animal implements Serializable {
 	private int estado;
 	
 	@OneToMany(mappedBy = "animalExame")
-	@JsonBackReference(value="animalexame-ref")
+	@JsonIgnore
 	private List<Exame> exames = new ArrayList<Exame>();
 	
 	@OneToMany(mappedBy = "animalConsulta")
-	@JsonBackReference(value="animalconsulta-ref")
+	@JsonIgnore
 	private List<Consulta> consultas = new ArrayList<Consulta>();
 	
 	public Animal(String nome, String foto, String raca, String pelagem, double peso, int tipo, String dataNascimento,
