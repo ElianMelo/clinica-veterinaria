@@ -1,4 +1,4 @@
-package com.elianmelo.clinicaveterinaria.config;
+package com.elianmelo.clinicaveterinaria;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
