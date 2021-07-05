@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,7 +39,6 @@ public class Consulta implements Serializable {
 	private String historico;
 	
 	@ManyToOne
-	@JsonManagedReference(value="animalconsulta-ref")
 	private Animal animalConsulta;
 	
     @OneToOne(mappedBy = "consulta")
